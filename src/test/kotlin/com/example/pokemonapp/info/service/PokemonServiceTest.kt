@@ -1,11 +1,11 @@
-package com.example.pokemonapp.service
+package com.example.pokemonapp.info.service
 
-import com.example.pokemonapp.model.Pokemon
+import com.example.pokemonapp.info.model.Pokemon
+import com.example.pokemonapp.info.model.PokemonApiResponse
 import com.ninjasquad.springmockk.MockkBean
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.extensions.spring.SpringExtension
 import io.kotest.matchers.shouldBe
-import io.kotest.matchers.shouldNotBe
 import io.mockk.every
 import org.springframework.boot.test.context.SpringBootTest
 
@@ -18,12 +18,11 @@ class PokemonServiceTest(private val pokemonService: PokemonService) : StringSpe
     private lateinit var pokemonClient: PokemonClient
 
     init {
-        "find pokemon" {
-            every { pokemonClient.findPokemon(any()) } returns Pokemon(name = "test name", weight = 2)
+        "find pokemon unit test" {
+            every { pokemonClient.findPokemon(any()) } returns PokemonApiResponse(name = "test name", weight = 2)
 
             val pokemon = pokemonService.findPokemon("name")
-            pokemon shouldNotBe null
-            pokemon!!.name shouldBe "test name"
+            pokemon shouldBe Pokemon(name = "test name", weight = 2)
         }
     }
 }
