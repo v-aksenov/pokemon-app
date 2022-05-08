@@ -19,7 +19,8 @@ class PokemonServiceTest(private val pokemonService: PokemonService) : StringSpe
 
     init {
         "find pokemon unit test" {
-            every { pokemonClient.findPokemon(any()) } returns PokemonApiResponse(name = "test name", weight = 2)
+            every { pokemonClient.findPokemon(any()) } returns
+                    PokemonApiResponse(name = "test name", weight = 2)
 
             val pokemon = pokemonService.findPokemon("name")
             pokemon shouldBe Pokemon(name = "test name", weight = 2)

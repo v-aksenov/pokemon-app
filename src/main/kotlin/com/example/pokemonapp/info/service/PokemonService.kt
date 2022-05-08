@@ -4,7 +4,10 @@ import com.example.pokemonapp.info.model.Pokemon
 import org.springframework.stereotype.Service
 
 @Service
-class PokemonService(private val pokemonClient: PokemonClient, private val pokemonDao: PokemonDao) {
+class PokemonService(
+    private val pokemonClient: PokemonClient,
+    private val pokemonDao: PokemonDao
+) {
 
     fun findPokemon(name: String): Pokemon =
         pokemonClient.findPokemon(name)
