@@ -28,13 +28,13 @@ class PokemonControllerTest(
         "save/getAll pokemon" {
             mockMvc.perform(
                 MockMvcRequestBuilders
-                    .post("/pokemon/save")
+                    .post("/pokemon")
                     .content(objectMapper.writeValueAsString(Pokemon(name = "name", weight = 1)))
                     .contentType(MediaType.APPLICATION_JSON)
             )
 
             val pokemons = mockMvc
-                .get("/pokemon/all-saved")
+                .get("/pokemon")
                 .andReturn()
                 .response
                 .contentAsString
@@ -49,7 +49,7 @@ class PokemonControllerTest(
         }
         "find pokemon" {
             val pokemon = mockMvc
-                .get("/pokemon/find?name=ditto")
+                .get("/pokemon-api/find?name=ditto")
                 .andReturn()
                 .response
                 .contentAsString
@@ -59,7 +59,7 @@ class PokemonControllerTest(
         }
         "find unexisted pokemon" {
             val response = mockMvc
-                .get("/pokemon/find?name=pokemonunknown")
+                .get("/pokemon-api/find?name=pokemonunknown")
                 .andReturn()
                 .response
 
