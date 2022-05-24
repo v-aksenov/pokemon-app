@@ -13,7 +13,7 @@ class PokemonApiController(private val pokemonService: PokemonService) {
     @GetMapping("/find")
     fun findPokemon(@RequestParam name: String): Pokemon = pokemonService.findPokemon(name)
 
-    @ExceptionHandler(value = [IllegalArgumentException::class])
+    @ExceptionHandler
     fun handleException(exception: IllegalArgumentException): ResponseEntity<*> {
         return ResponseEntity(exception.message, HttpStatus.BAD_REQUEST)
     }
